@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ページ基本情報ここから：検索結果やブラウザのタブに表示されます -->
+  <title>株式会社大東 | 未経験から、地図に残る仕事へ。</title>
+  <meta name="description" content="株式会社大東はPC橋梁建設工事を手がける橋梁建設会社です。未経験から地域の未来とインフラを支える現場スタッフを募集しています。">
+  <meta name="robots" content="index, follow">
+  <meta property="og:site_name" content="株式会社大東">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="株式会社大東 | 未経験から、地図に残る仕事へ。">
+  <meta property="og:description" content="PC橋梁建設工事を手がける株式会社大東の採用サイトです。未経験から地域のインフラを支える仕事へ。">
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <!-- ページ基本情報ここまで -->
+
+  <style>
+    /* =========================================================
+      共通デザイン設定ここから
+      色を変える場合は、まず下のカラーコードだけ調整してください。
+    ========================================================= */
+    :root {
+      --blue-900: #071d33;
+      --blue-800: #0a3459;
+      --blue-700: #0f4c81;
+      --blue-500: #1f8aaf;
+      --steel-100: #eef4f8;
+      --steel-200: #d9e4ec;
+      --steel-700: #526576;
+      --text: #1d2935;
+      --white: #ffffff;
+      --shadow: 0 20px 50px rgba(7, 29, 51, 0.14);
+      --radius: 8px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+      line-height: 1.8;
+      background: #f7fafc;
+    }
+    img { display: block; width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+    .section { padding: 86px 0; }
+    .section-white { background: var(--white); }
+    .section-soft { background: var(--steel-100); }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--blue-500);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+    h1, h2, h3, p { overflow-wrap: anywhere; }
+    .section-title {
+      margin: 0 0 16px;
+      color: var(--blue-900);
+      font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    .section-lead {
+      max-width: 760px;
+      margin: 0 0 34px;
+      color: var(--steel-700);
+      font-size: 1.05rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      background: var(--blue-500);
+      color: var(--white);
+      font-weight: 800;
+      box-shadow: 0 14px 28px rgba(31, 138, 175, 0.28);
+      transition: 0.2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #176f91; }
+    .button-outline {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: none;
+    }
+    .button-outline:hover { background: rgba(255,255,255,0.18); }
+    /* 共通デザイン設定ここまで */
+
+    /* ヘッダーここから：会社名、メニュー、電話番号を編集できます */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid var(--steel-200);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      min-height: 74px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue-900);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      border: 1px solid var(--steel-200);
+      background: var(--white);
+      color: var(--blue-700);
+      overflow: hidden;
+      line-height: 1;
+    }
+    .logo-mark img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--steel-700);
+      font-size: 0.94rem;
+      font-weight: 800;
+    }
+    .nav a:hover, .nav .current { color: var(--blue-700); }
+    .header-tel { color: var(--blue-700); font-weight: 900; white-space: nowrap; }
+    /* ヘッダーここまで */
+
+    /* メインビジュアルここから：背景写真は hero.jpg を差し替えてください */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 74px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(7,29,51,0.92) 0%, rgba(10,52,89,0.82) 48%, rgba(10,52,89,0.2) 100%),
+        url("images/hero.jpg") center / cover no-repeat;
+    }
+    .hero-content { position: relative; max-width: 790px; padding: 88px 0; z-index: 1; }
+    .hero-company {
+      margin: 0 0 20px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+    .hero h1 {
+      margin: 0 0 24px;
+      font-size: clamp(2.5rem, 6.2vw, 5rem);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .hero-text {
+      max-width: 650px;
+      margin: 0 0 34px;
+      color: rgba(255,255,255,0.9);
+      font-size: clamp(1.04rem, 2vw, 1.22rem);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 48px;
+      max-width: 760px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+    }
+    .hero-stat { padding: 18px; background: rgba(7,29,51,0.18); }
+    .hero-stat strong { display: block; font-size: 1.35rem; line-height: 1.25; }
+    .hero-stat span { color: rgba(255,255,255,0.78); font-size: 0.88rem; }
+    /* メインビジュアルここまで */
+
+    /* トップ案内カードここから */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .link-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      position: relative;
+      padding: 28px;
+      border-radius: var(--radius);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      background: var(--blue-800);
+    }
+    .link-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7,29,51,0.08), rgba(7,29,51,0.88));
+      z-index: 1;
+    }
+    .link-card img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .link-card:hover img { transform: scale(1.05); }
+    .link-card-content { position: relative; z-index: 2; }
+    .link-card h3 { margin: 0 0 10px; font-size: 1.35rem; line-height: 1.4; }
+    .link-card p { margin: 0 0 18px; color: rgba(255,255,255,0.86); }
+    .text-link { color: var(--white); font-weight: 900; }
+    /* トップ案内カードここまで */
+
+    /* 信頼セクションここから */
+    .trust-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .watermark-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .watermark-section::before {
+      content: "";
+      position: absolute;
+      right: -33vw;
+      top: 75%;
+      width: 100vw;
+      height: 100vw;
+      min-width: 760px;
+      min-height: 760px;
+      background: url("images/daito-logo.png") center / contain no-repeat;
+      opacity: 0.06;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .watermark-left::before {
+      right: auto;
+      left: -33vw;
+      top: 25%;
+    }
+    .watermark-section > .container {
+      position: relative;
+      z-index: 1;
+    }
+    .trust-panel {
+      padding: 34px;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .trust-list { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+    .trust-list li {
+      padding: 16px 18px;
+      border-left: 4px solid var(--blue-500);
+      background: #f8fbfd;
+      border-radius: var(--radius);
+      font-weight: 700;
+    }
+    .image-frame {
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--steel-200);
+    }
+    .image-frame img { aspect-ratio: 4 / 3; object-fit: cover; }
+    /* 信頼セクションここまで */
+
+    /* CTAここから */
+    .cta {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+    }
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .cta h2 { margin: 0 0 10px; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.35; }
+    .cta p { margin: 0; color: rgba(255,255,255,0.86); }
+    .tel-big { display: block; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.1; }
+    /* CTAここまで */
+
+    /* フッターここから */
+    .footer { padding: 30px 0; background: #061726; color: rgba(255,255,255,0.72); text-align: center; }
+    /* フッターここまで */
+
+    /* スマートフォン対応ここから */
+    @media (max-width: 920px) {
+      .header-inner { flex-wrap: wrap; gap: 12px; padding-top: 10px; }
+      .nav {
+        order: 3;
+        display: flex;
+        width: 100%;
+        gap: 8px;
+        padding: 0 0 12px;
+        margin-top: -2px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .nav::-webkit-scrollbar { display: none; }
+      .nav a {
+        flex: 0 0 auto;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: #f3f8fb;
+        color: var(--steel-700);
+        font-size: 0.82rem;
+        line-height: 1;
+      }
+      .nav a:hover, .nav .current { color: var(--white); background: var(--blue-700); }
+      .hero {
+        min-height: 680px;
+        background:
+          linear-gradient(180deg, rgba(7,29,51,0.92), rgba(10,52,89,0.74)),
+          url("images/hero.jpg") center / cover no-repeat;
+      }
+      .link-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: 1fr; }
+      .cta-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .section { padding: 62px 0; }
+      .header-inner { min-height: 64px; }
+      .header-tel { display: none; }
+      .hero-content { padding: 64px 0; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .link-grid { grid-template-columns: 1fr; }
+      .link-card { min-height: 240px; }
+      .watermark-section::before {
+        right: -48vw;
+        opacity: 0.045;
+      }
+    }
+    /* スマートフォン対応ここまで */
+  </style>
+</head>
+
+<body>
+  <!-- ヘッダーここから -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark"><img src="images/daito-logo.png" alt=""></span>
+        <span>株式会社大東</span>
+      </a>
+
+      <!-- メニューここから：ページ名を変える場合はこの部分を編集してください -->
+      <nav class="nav" aria-label="メインメニュー">
+        <a class="current" href="index.html">トップ</a>
+        <a href="business.html">事業内容</a>
+        <a href="works.html">施工実績</a>
+        <a href="recruit.html">採用情報</a>
+        <a href="company.html">会社概要・お問い合わせ</a>
+      </nav>
+      <!-- メニューここまで -->
+
+      <a class="header-tel" href="tel:0462281553">TEL 046-228-1553</a>
+    </div>
+  </header>
+  <!-- ヘッダーここまで -->
+
+  <main>
+    <!-- メインビジュアルここから -->
+    <section class="hero" data-bg-key="topHero" data-bg-overlay="linear-gradient(90deg, rgba(7,29,51,0.92) 0%, rgba(10,52,89,0.82) 48%, rgba(10,52,89,0.2) 100%)">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-company">株式会社大東 採用サイト</p>
+          <h1>未経験から、<br>地図に残る仕事へ。</h1>
+          <p class="hero-text">
+            プレストレスト・コンクリート（PC）橋の建設技術で、地域の未来とインフラを支える仲間を募集しています。
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="recruit.html">採用情報を見る</a>
+            <a class="button button-outline" href="tel:0462281553">電話で相談する</a>
+          </div>
+
+          <!-- 数字で見る大東ここから：数値は後から編集できます -->
+          <div class="hero-stats" aria-label="株式会社大東の特徴">
+            <div class="hero-stat">
+              <strong>PC橋梁建設</strong>
+              <span>特殊工事の技術を習得</span>
+            </div>
+            <div class="hero-stat">
+              <strong>関東一円</strong>
+              <span>現場はチームで移動</span>
+            </div>
+            <div class="hero-stat">
+              <strong>資格全額支援</strong>
+              <span>未経験から挑戦可能</span>
+            </div>
+          </div>
+          <!-- 数字で見る大東ここまで -->
+        </div>
+      </div>
+    </section>
+    <!-- メインビジュアルここまで -->
+
+    <!-- 各ページへの案内ここから -->
+    <section class="section section-white watermark-section">
+      <div class="container">
+        <span class="eyebrow">CONTENTS</span>
+        <h2 class="section-title">大東の仕事と採用を知る</h2>
+        <p class="section-lead">
+          事業内容、働く環境、会社情報をページごとに整理しました。初めて橋梁工事を知る方にも分かりやすく構成しています。
+        </p>
+
+        <div class="link-grid">
+          <!-- 事業内容カードここから：top-business.jpg を差し替えてください -->
+          <a class="link-card" href="business.html">
+            <img src="images/top-business.jpg" data-image-key="topBusiness" alt="PC橋梁建設の現場写真">
+            <div class="link-card-content">
+              <h3>事業内容</h3>
+              <p>PC橋梁建設の技術と現場の仕事を紹介します。</p>
+              <span class="text-link">詳しく見る</span>
+            </div>
+          </a>
+          <!-- 事業内容カードここまで -->
+
+          <!-- 施工実績カードここから：top-works.jpg を差し替えてください -->
+          <a class="link-card" href="works.html">
+            <img src="images/top-works.jpg" data-image-key="topWorks" alt="施工実績の橋梁工事写真">
+            <div class="link-card-content">
+              <h3>施工実績</h3>
+              <p>これまでに携わった橋梁工事の実績を紹介します。</p>
+              <span class="text-link">実績を見る</span>
+            </div>
+          </a>
+          <!-- 施工実績カードここまで -->
+
+          <!-- 採用情報カードここから：top-recruit.jpg を差し替えてください -->
+          <a class="link-card" href="recruit.html">
+            <img src="images/top-recruit.jpg" data-image-key="topRecruit" alt="現場スタッフの採用写真">
+            <div class="link-card-content">
+              <h3>採用情報</h3>
+              <p>募集要項、未経験者歓迎の理由、資格支援を掲載しています。</p>
+              <span class="text-link">募集要項を見る</span>
+            </div>
+          </a>
+          <!-- 採用情報カードここまで -->
+
+          <!-- 会社概要カードここから：top-company.jpg を差し替えてください -->
+          <a class="link-card" href="company.html">
+            <img src="images/top-company.jpg" data-image-key="topCompany" alt="株式会社大東の会社イメージ写真">
+            <div class="link-card-content">
+              <h3>会社概要・お問い合わせ</h3>
+              <p>許可番号、所在地、電話でのお問い合わせ先を掲載しています。</p>
+              <span class="text-link">会社情報を見る</span>
+            </div>
+          </a>
+          <!-- 会社概要カードここまで -->
+        </div>
+      </div>
+    </section>
+    <!-- 各ページへの案内ここまで -->
+
+    <!-- 信頼と強みここから -->
+    <section class="section section-soft">
+      <div class="container trust-grid">
+        <div class="trust-panel">
+          <span class="eyebrow">WHY DAITO</span>
+          <h2 class="section-title">技術、安定、育成。長く働ける土台があります。</h2>
+          <ul class="trust-list">
+            <li>建設業許可：知事許可（般-5）第12134号</li>
+            <li>玉掛けなどの資格取得は会社が全額負担</li>
+            <li>先輩が現場の基本から丁寧に指導</li>
+          </ul>
+        </div>
+
+        <!-- 信頼セクション画像ここから：strength.jpg を差し替えてください -->
+        <div class="image-frame">
+          <img src="images/strength.jpg" data-image-key="topStrength" alt="橋梁建設に関わる現場の写真">
+        </div>
+        <!-- 信頼セクション画像ここまで -->
+      </div>
+    </section>
+    <!-- 信頼と強みここまで -->
+
+    <!-- 応募CTAここから -->
+    <section class="section cta">
+      <div class="container cta-inner">
+        <div>
+          <span class="eyebrow">ENTRY</span>
+          <h2>まずはお気軽にお電話ください。</h2>
+          <p>「ホームページの求人を見た」とお伝えいただくとスムーズです。</p>
+        </div>
+        <div>
+          <a class="tel-big" href="tel:0462281553">046-228-1553</a>
+          <p data-contact-person>担当：鍋島</p>
+        </div>
+      </div>
+    </section>
+    <!-- 応募CTAここまで -->
+  </main>
+
+  <!-- フッターここから -->
+  <footer class="footer">
+    <div class="container">
+      <small>&copy; 株式会社大東. All Rights Reserved.</small>
+    </div>
+  </footer>
+  <!-- フッターここまで -->
+  <script src="site-data.js"></script>
+  <script src="site-render.js"></script>
+</body>
+</html>

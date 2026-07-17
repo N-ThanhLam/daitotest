@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>かんたん編集 | 株式会社大東ホームページ</title>
+  <style>
+    :root {
+      --blue-900: #071d33;
+      --blue-700: #0f4c81;
+      --blue-500: #1f8aaf;
+      --steel-100: #eef4f8;
+      --steel-200: #d9e4ec;
+      --steel-700: #526576;
+      --text: #1d2935;
+      --white: #ffffff;
+      --radius: 8px;
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+      line-height: 1.7;
+      background: var(--steel-100);
+    }
+    .container { width: min(100% - 32px, var(--max)); margin: 0 auto; }
+    header {
+      padding: 44px 0;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+    }
+    h1 { margin: 0 0 10px; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.3; }
+    header p { margin: 0; color: rgba(255,255,255,0.86); }
+    main { padding: 36px 0 72px; }
+    section {
+      margin-bottom: 24px;
+      padding: 26px;
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 12px 28px rgba(7,29,51,0.07);
+    }
+    h2 { margin: 0 0 18px; color: var(--blue-900); font-size: 1.35rem; }
+    .notice {
+      margin: 0 0 24px;
+      padding: 22px;
+      border: 2px solid var(--blue-500);
+      border-radius: var(--radius);
+      background: #f8fbfd;
+    }
+    .notice h2 { margin-bottom: 10px; }
+    .notice ol { margin: 0; padding-left: 1.4em; color: var(--steel-700); }
+    .notice li + li { margin-top: 6px; }
+    .warning {
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      border-left: 5px solid var(--blue-500);
+      border-radius: var(--radius);
+      background: #eef7fb;
+      color: var(--steel-700);
+      font-size: 0.94rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    label { display: grid; gap: 6px; font-weight: 800; color: var(--blue-900); }
+    input, textarea {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius);
+      color: var(--text);
+      font: inherit;
+      background: #fbfdff;
+    }
+    textarea { min-height: 86px; resize: vertical; }
+    .full { grid-column: 1 / -1; }
+    .work-item {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius);
+      background: #f8fbfd;
+    }
+    .work-item h3 { margin: 0 0 14px; color: var(--blue-700); }
+    .actions {
+      position: sticky;
+      bottom: 0;
+      z-index: 5;
+      padding: 16px 0;
+      background: rgba(238,244,248,0.94);
+      backdrop-filter: blur(10px);
+    }
+    .action-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--steel-200);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    button {
+      min-height: 48px;
+      padding: 10px 18px;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--blue-500);
+      color: var(--white);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    button.secondary { background: var(--blue-700); }
+    .help { margin: 0; color: var(--steel-700); font-size: 0.94rem; }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>かんたん編集</h1>
+      <p>会社情報・求人情報・施工実績を入力して、ホームページの表示データを更新します。</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="notice">
+      <h2>更新の流れ</h2>
+      <ol>
+        <li>下の入力欄を変更します。</li>
+        <li>画面下の「データを更新」を押します。</li>
+        <li>保存画面が出たら、このフォルダにある今の `site-data.js` を選んで上書きします。</li>
+        <li>上書き保存が使えない場合は、ダウンロードされた `site-data.js` を古いファイルと置き換えます。</li>
+        <li>公開サイトも更新する場合は、更新した `site-data.js` をGitHubにアップロードします。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>会社情報</h2>
+      <div class="grid" id="companyFields"></div>
+    </section>
+
+    <section>
+      <h2>画像</h2>
+      <p class="help">
+        画像は `images` フォルダに入れます。新しい画像を使う場合は、下の画像一覧に `images/ファイル名.jpg` の形で1行追加してください。
+      </p>
+      <label class="full" style="margin:16px 0;">
+        登録済み画像一覧
+        <textarea id="imageOptionsText"></textarea>
+      </label>
+      <div class="grid" id="imageFields"></div>
+      <datalist id="imageOptionsList"></datalist>
+    </section>
+
+    <section>
+      <h2>採用情報</h2>
+      <div class="grid" id="recruitFields"></div>
+    </section>
+
+    <section>
+      <h2>施工実績</h2>
+      <p class="help">施工実績を増やす場合は「施工実績を追加」を押してください。写真は画像ファイル名だけ入力します。</p>
+      <p class="warning">
+        工事名・現場名・写真は、元請け会社や発注者との関係で公開できない場合があります。迷う場合は「○○橋」「○○県○○市」のようにぼかして入力してください。
+      </p>
+      <div id="worksFields"></div>
+      <p style="margin-top:16px;"><button type="button" class="secondary" id="addWork">施工実績を追加</button></p>
+    </section>
+  </main>
+
+  <div class="actions">
+    <div class="container action-inner">
+      <p class="help">保存先で今の `site-data.js` を選ぶと、データを上書き更新できます。</p>
+      <button type="button" id="download">データを更新</button>
+    </div>
+  </div>
+
+  <script src="site-data.js"></script>
+  <script>
+    const data = JSON.parse(JSON.stringify(window.DAITO_SITE_DATA || { company: {}, recruit: {}, works: [] }));
+    data.imageOptions = data.imageOptions || [];
+    data.images = data.images || {};
+
+    const companySchema = [
+      ["name", "会社名"], ["shortName", "ロゴ短縮名"], ["phone", "電話番号"], ["phoneHref", "電話リンク用番号"],
+      ["contactPerson", "担当者"], ["representative", "代表取締役"], ["established", "設立"], ["capital", "資本金"],
+      ["employees", "従業員数"], ["permit", "建設業許可"], ["businessItems", "営業種目"], ["postalCode", "郵便番号"],
+      ["address", "住所"], ["area", "対応エリア"]
+    ];
+    const recruitSchema = [
+      ["jobTitle", "職種"], ["employmentType", "雇用形態"], ["salary", "給与"], ["workHours", "勤務時間"],
+      ["headquarters", "本社所在地", "textarea"], ["workArea", "現場"], ["commute", "通勤"], ["holidays", "休日・休暇"],
+      ["requirements", "応募資格"], ["benefits", "待遇・福利厚生", "textarea"], ["trialPeriod", "試用期間"], ["selectionFlow", "選考の流れ"]
+    ];
+    const imageSchema = [
+      ["topHero", "トップ メイン画像"],
+      ["topBusiness", "トップ 事業内容カード"],
+      ["topWorks", "トップ 施工実績カード"],
+      ["topRecruit", "トップ 採用情報カード"],
+      ["topCompany", "トップ 会社概要カード"],
+      ["topStrength", "トップ 強み写真"],
+      ["businessHero", "事業内容 メイン画像"],
+      ["businessTech", "事業内容 技術説明写真"],
+      ["worksHero", "施工実績 メイン画像"],
+      ["recruitHero", "採用情報 メイン画像"],
+      ["recruitMessage", "採用情報 スタッフ写真"],
+      ["companyHero", "会社概要 メイン画像"]
+    ];
+
+    function field(name, label, value, type = "input", group) {
+      const wrapper = document.createElement("label");
+      if (type === "textarea") wrapper.className = "full";
+      wrapper.textContent = label;
+      const input = document.createElement(type);
+      input.value = value || "";
+      input.dataset.group = group;
+      input.dataset.name = name;
+      if (group === "images") input.setAttribute("list", "imageOptionsList");
+      wrapper.appendChild(input);
+      return wrapper;
+    }
+
+    function renderSimpleFields(targetId, schema, group) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = "";
+      schema.forEach(([name, label, type]) => {
+        target.appendChild(field(name, label, data[group][name], type || "input", group));
+      });
+    }
+
+    function renderWorks() {
+      renderImageOptionsList();
+      const target = document.getElementById("worksFields");
+      target.innerHTML = "";
+      data.works.forEach((work, index) => {
+        const box = document.createElement("div");
+        box.className = "work-item";
+        box.innerHTML = `<h3>施工実績 ${index + 1}</h3><div class="grid"></div>`;
+        const grid = box.querySelector(".grid");
+        [
+          ["year", "年度"],
+          ["title", "工事名"],
+          ["place", "施工場所"],
+          ["content", "工事内容", "textarea"],
+          ["note", "備考"],
+          ["image", "写真ファイル名"]
+        ].forEach(([name, label, type]) => {
+          const el = field(name, label, work[name], type || "input", "works");
+          el.querySelector("input, textarea").dataset.index = index;
+          if (name === "image") el.querySelector("input, textarea").setAttribute("list", "imageOptionsList");
+          grid.appendChild(el);
+        });
+        target.appendChild(box);
+      });
+    }
+
+    function collect() {
+      data.imageOptions = document.getElementById("imageOptionsText").value
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+      document.querySelectorAll("[data-group='company'], [data-group='recruit']").forEach((input) => {
+        data[input.dataset.group][input.dataset.name] = input.value;
+      });
+      document.querySelectorAll("[data-group='images']").forEach((input) => {
+        data.images[input.dataset.name] = input.value;
+      });
+      document.querySelectorAll("[data-group='works']").forEach((input) => {
+        const index = Number(input.dataset.index);
+        data.works[index][input.dataset.name] = input.value;
+      });
+    }
+
+    function renderImageOptionsList() {
+      const list = document.getElementById("imageOptionsList");
+      if (!list) return;
+      list.innerHTML = "";
+      data.imageOptions.forEach((image) => {
+        const option = document.createElement("option");
+        option.value = image;
+        list.appendChild(option);
+      });
+    }
+
+    function createSiteDataText() {
+      collect();
+      return `// 株式会社大東ホームページ 編集用データ\nwindow.DAITO_SITE_DATA = ${JSON.stringify(data, null, 2)};\n`;
+    }
+
+    function downloadSiteData(body) {
+      const blob = new Blob([body], { type: "text/javascript;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "site-data.js";
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function updateSiteData() {
+      const body = createSiteDataText();
+
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: "site-data.js",
+            types: [{
+              description: "JavaScript file",
+              accept: { "text/javascript": [".js"] }
+            }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(body);
+          await writable.close();
+          alert("site-data.js を更新しました。");
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+
+      downloadSiteData(body);
+      alert("上書き保存が使えないため、site-data.js をダウンロードしました。古い site-data.js と置き換えてください。");
+    }
+
+    document.getElementById("addWork").addEventListener("click", () => {
+      collect();
+      const next = data.works.length + 1;
+      data.works.push({
+        year: "20XX年",
+        title: "○○橋 工事",
+        place: "○○県○○市",
+        content: "PC橋梁建設工事、橋梁特殊工事",
+        note: "公開可能な範囲で入力",
+        image: `images/works-${String(next).padStart(2, "0")}.jpg`
+      });
+      renderWorks();
+    });
+    document.getElementById("download").addEventListener("click", updateSiteData);
+    document.getElementById("imageOptionsText").addEventListener("input", () => {
+      data.imageOptions = document.getElementById("imageOptionsText").value
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+      renderImageOptionsList();
+    });
+
+    document.getElementById("imageOptionsText").value = data.imageOptions.join("\n");
+    renderSimpleFields("companyFields", companySchema, "company");
+    renderSimpleFields("imageFields", imageSchema, "images");
+    renderSimpleFields("recruitFields", recruitSchema, "recruit");
+    renderImageOptionsList();
+    renderWorks();
+  </script>
+</body>
+</html>
